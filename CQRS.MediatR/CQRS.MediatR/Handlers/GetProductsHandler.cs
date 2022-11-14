@@ -6,9 +6,13 @@ namespace CQRS.MediatR.Handlers
 {
     public class GetProductsHandler : IRequestHandler<GetProductsQuery, IEnumerable<Product>>
     {
-        public Task<IEnumerable<Product>> Handle(GetProductsQuery request, CancellationToken cancellationToken)
+        private readonly FakeDataStore _fakeDataStore;
+
+        public GetProductsHandler(FakeDataStore fakeDataStore) => _fakeDataStore = fakeDataStore;
+
+        public async Task<IEnumerable<Product>> Handle(GetProductsQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _fakeDataStore.GetProducts();
         }
     }
 }

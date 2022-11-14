@@ -23,5 +23,7 @@ namespace CQRS.MediatR
         }
 
         public async Task<IEnumerable<Product>> GetProducts() => await Task.FromResult(_products);
+
+        public async Task<Product> GetProductById(int id) => await Task.FromResult(_products.Single(p => p.Id == id));
     }
 }
